@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import database.login.common;
+
 /**
  * Servlet implementation class register
  */
@@ -36,8 +38,17 @@ public class register extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		common database = new common();
+		if(database.registerAccount(
+				request.getParameter("first"),
+				request.getParameter("last"),
+				request.getParameter("email"),
+				request.getParameter("mobile"),
+				request.getParameter("password"))){
+			response.sendRedirect("./");
+		}else {
+			doGet(request, response);
+		}
 	}
 
 }

@@ -53,6 +53,34 @@ public class common {
 		return result;
 	
 	}
-	
+
+	//Register new account
+	public boolean registerAccount(String name,String last,String email,String number,String password) {
+		
+		if(connection ==null) {
+			connection = getConncection();
+		}
+		try {
+			
+			PreparedStatement sql = connection
+					.prepareStatement("INSERT INTO `students` (`s_id`, `name`, `last`, `email`, `number`, `password`) VALUES (NULL, ?, ?, ?, ?, ?)");
+			sql.setString(1,name);
+			sql.setString(2,last);
+			sql.setString(3,email);
+			sql.setString(4,number);
+			sql.setString(5,password);
+		
+			if(sql.executeUpdate() >0) {
+				return true;
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return false;
+	}
 	
 }

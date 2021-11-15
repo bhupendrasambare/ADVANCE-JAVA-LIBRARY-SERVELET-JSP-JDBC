@@ -6,19 +6,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Library</title>
 </head>
 <body>
 <%
 	Connection conn = common.getConncection();
+	if(session.getAttribute("id") == null){
+		response.sendRedirect("login");
+	}
 	String name = (String)session.getAttribute("name");
 	String last = (String)session.getAttribute("last");
 	String email = (String)session.getAttribute("email");
 	String number = (String)session.getAttribute("number");
 %>
-Name = <%=name %></br>
-Last = <%=last %></br>
-Email = <%=email %></br>
-number = <%=number %></br>
+
+<%if(name !=null){
+	%>
+Name = <%=name %>
+</br>
+Last = <%=last %>
+</br>
+Email = <%=email %>
+</br>
+number = <%=number %>
+
+<%} %>
 </body>
 </html>
