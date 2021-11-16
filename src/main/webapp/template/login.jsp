@@ -3,6 +3,11 @@
 
 <head>
     <meta charset="utf-8">
+
+<link rel = "icon" href = 
+"template/assets/img/logo.png" 
+        type = "image/x-icon">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Login</title>
     <link rel="stylesheet" href="template/assets/bootstrap/css/bootstrap.min.css">

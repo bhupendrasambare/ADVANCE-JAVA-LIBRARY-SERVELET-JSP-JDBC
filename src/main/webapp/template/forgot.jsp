@@ -3,6 +3,11 @@
 
 <head>
     <meta charset="utf-8">
+
+<link rel = "icon" href = 
+"template/assets/img/logo.png" 
+        type = "image/x-icon">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Forgotten Password</title>
     <link rel="stylesheet" href="template/assets/bootstrap/css/bootstrap.min.css">
@@ -20,7 +25,7 @@
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-flex">
-                                <div class="flex-grow-1 bg-password-image" style="background-image: url(&quot;template/assets/img/dogs/image1.jpeg&quot;);"></div>
+                                <div class="flex-grow-1 bg-password-image" style="background-image: url(&quot;template/assets/img/login.jpg&quot;);"></div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">

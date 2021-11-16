@@ -6,6 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<link rel = "icon" href = 
+"template/assets/img/logo.png" 
+        type = "image/x-icon">
+
 <title>Library</title>
 </head>
 <body>
