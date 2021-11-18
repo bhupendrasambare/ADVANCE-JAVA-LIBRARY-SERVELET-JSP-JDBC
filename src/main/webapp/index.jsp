@@ -1,5 +1,7 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page import="database.login.common"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="database.Users.Details"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
@@ -8,7 +10,23 @@
 		response.sendRedirect("login");
 	}
 	else{
-		
+			Details user = new Details();
+			ResultSet result = user.getUserDetails((Integer)session.getAttribute("id"));
+			if(!result.next()){
+				response.sendRedirect("login");
+			}
+			/* Total Due Count */
+			ResultSet dueCount = user.getFineCount((Integer)session.getAttribute("id"));
+			int totalDue=0;
+			if(dueCount.next()){
+				totalDue = dueCount.getInt("SUM(due)");
+			}
+			/* Total Books issued  */
+			ResultSet issueCount = user.getIssueBookCount((Integer)session.getAttribute("id"));
+			int issue=0;
+			if(issueCount.next()){
+				issue = issueCount.getInt("count(s_id)");
+			}
     %>
 <!DOCTYPE html>
 <html>
@@ -59,36 +77,36 @@
 	<table class="table">
   		<thead class="table-dark">
     		<tr>
-		      <th scope="col">#</th>
+		      <th scope="row"><i class="fas fa-address-card"></i></th>
 		      <th scope="col"></th>
 		      <th scope="col">Details</th>
 		    </tr>
   		</thead>
   		<tbody>
   			<tr>
-		      <th scope="row"><i class="fab fa-angellist font-primary"></i></th>
-		      <td>Mark</td>
-		      <td>Otto</td>
+		      <th scope="row"><i class="far fa-address-card"></i></th>
+		      <td>Full Name</td>
+		      <td><%=result.getString("name")%></td>
 		    </tr>
   			<tr>
-		      <th scope="row">1</th>
-		      <td>Mark</td>
-		      <td>Otto</td>
+		      <th scope="row"><i class="far fa-address-card"></i></th>
+		      <td>Email</td>
+		      <td><%=result.getString("email")%></td>
 		    </tr>
   			<tr>
-		      <th scope="row">1</th>
-		      <td>Mark</td>
-		      <td>Otto</td>
+		      <th scope="row"><i class="far fa-address-card"></i></th>
+		      <td>Number</td>
+		      <td><%=result.getString("number")%></td>
 		      </tr>
   			<tr>
-		      <th scope="row">1</th>
-		      <td>Mark</td>
-		      <td>Otto</td>
+		      <th scope="row"><i class="far fa-address-card"></i></th>
+		      <td>Total Due Submited</td>
+		      <td>₹<%= totalDue %></td>
 		    </tr>
   			<tr>
-		      <th scope="row">1</th>
-		      <td>Mark</td>
-		      <td>Otto</td>
+		      <th scope="row"><i class="far fa-address-card"></i></th>
+		      <td>Number of Books Issued</td>
+		      <td><%=issue %></td>
 		    </tr>
   		</tbody>
 </table>

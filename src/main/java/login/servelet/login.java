@@ -50,10 +50,6 @@ public class login extends HttpServlet {
 			if(result.next()) {
 				HttpSession user = request.getSession();
 				user.setAttribute("id", result.getInt("s_id"));
-				user.setAttribute("name", result.getString("name"));
-				user.setAttribute("email", result.getString("email"));
-				user.setAttribute("last", result.getString("last"));
-				user.setAttribute("number", result.getString("number"));
 				response.sendRedirect("./");
 				
 			}
