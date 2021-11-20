@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.mysql.cj.xdevapi.Result;
+
 import database.login.common;
 
 public class Details {
@@ -59,4 +61,25 @@ public class Details {
 			}
 		return result;
 	}
+	public ResultSet getDueDetails(int id) {
+		ResultSet result = null;
+		if(connection == null) {
+			connection = common.getConncection();
+		}
+		try {
+			PreparedStatement sql = connection.prepareStatement("select * from due WHERE student = ?");
+			sql.setInt(1, id);
+			result = sql.executeQuery();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
 }
