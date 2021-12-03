@@ -61,9 +61,9 @@
         </li>
       </ul>
       
-      <form class="d-flex">
-        <button class="btn btn-outline-dark">Logout</button>
-      </form>
+      <a href="logout">
+        <button href="logout" class="btn btn-outline-dark">Logout</button>
+        </a>
     </div>
   </div>
 </nav>

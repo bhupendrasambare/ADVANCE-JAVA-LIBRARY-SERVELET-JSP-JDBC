@@ -1,29 +1,20 @@
-<%@page import="java.sql.ResultSet"%>
-<%@page import="database.login.common"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="database.Users.Details"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-	Connection conn = common.getConncection();
-	if(session.getAttribute("id") == null){
+    if(session.getAttribute("admin") == null){
 		response.sendRedirect("login");
 	}
-	else{
-	Details detail = new Details();
-	ResultSet table =  detail.getDueDetails((Integer)session.getAttribute("id"));
-	boolean isResult=false;
     %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
-		<link rel = "icon" href = "template/assets/img/logo.png" type = "image/x-icon">
+		<link rel = "icon" href = "../template/assets/img/logo.png" type = "image/x-icon">
         
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-    <link rel="stylesheet" href="template/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../template/assets/fonts/fontawesome-all.min.css">
 
 <title>Library</title>
 </head>
@@ -47,53 +38,53 @@
         </li>
       </ul>
       
-       <a href="logout">
+      <a href="logout">
         <button href="logout" class="btn btn-outline-dark">Logout</button>
         </a>
     </div>
   </div>
 </nav>
 
-	<div class="conteiner mt-3 d-flex justify-content-center">
-		<div><h1>Student Due Details</h1></div>
+	<div class="conteiner d-flex justify-content-center">
+		<div><h1>Student Details</h1></div>
 	</div>
 	
 <div class="container mt-3">
+	
 	<table class="table">
-	  <thead class="table-dark">
-	    <tr>
-	      <th scope="col"><i class="fas fa-book"></i></th>
-	      <th scope="col">Due Id</th>
-	      <th scope="col">Book Id</th>
-	      <th scope="col">Issue Date</th>
-	      <th scope="col">Return Date</th>
-	      <th scope="col">Due</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	  <%
-	  	while(table.next())
-	  	{
-	  		isResult = true;
-	  %>
-	    <tr>
-	      <th scope="row"><i class="fas fa-book"></i></th>
-	      <td><%=table.getInt("due_id")%></td>
-	      <td><%=table.getInt("book")%></td>
-	      <td><%=table.getString("maindate")%></td>
-	      <td><%=table.getString("returndate")%></td>
-	      <td><%=table.getInt("due")%></td>
-	    </tr>
-	  	<% }%>
-		<%if(!isResult){%>
-			
-		<tr>
-	      <th>No Record Found</th>
-	    </tr>
-			
-		<%}%>
-	  </tbody>
-	</table>
+  		<thead class="table-dark">
+    		<tr>
+		      <th scope="row"><i class="fas fa-address-card"></i></th>
+		      <th scope="col"></th>
+		      <th scope="col">Details</th>
+		    </tr>
+  		</thead>
+  		<tbody>
+  			<tr>
+		      <th scope="row"><i class="far fa-address-card"></i></th>
+		      <td>Full Name</td>
+		    </tr>
+  			<tr>
+		      <th scope="row"><i class="far fa-address-card"></i></th>
+		      <td>Email</td>
+		    </tr>
+  			<tr>
+		      <th scope="row"><i class="far fa-address-card"></i></th>
+		      <td>Number</td>
+		      </tr>
+  			<tr>
+		      <th scope="row"><i class="far fa-address-card"></i></th>
+		      <td>Total Due Submited</td>
+		    </tr>
+  			<tr>
+		      <th scope="row"><i class="far fa-address-card"></i></th>
+		      <td>Number of Books Issued</td>
+		    </tr>
+  		</tbody>
+</table>
+	
+	
+	
 </div>
 
 
@@ -110,4 +101,3 @@
     
 </body>
 </html>
-	<%}%>

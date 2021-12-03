@@ -1,3 +1,4 @@
+<%@page import="database.Users.bag"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="database.login.common"%>
 <%@page import="java.sql.Connection"%>
@@ -5,13 +6,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-	Connection conn = common.getConncection();
 	if(session.getAttribute("id") == null){
 		response.sendRedirect("login");
 	}
 	else{
-	Details detail = new Details();
-	ResultSet table =  detail.getDueDetails((Integer)session.getAttribute("id"));
+		
+	bag detail = new bag();
+	ResultSet table =  detail.getIssueBook((Integer)session.getAttribute("id"));
 	boolean isResult=false;
     %>
 <!DOCTYPE html>
@@ -47,7 +48,7 @@
         </li>
       </ul>
       
-       <a href="logout">
+      <a href="logout">
         <button href="logout" class="btn btn-outline-dark">Logout</button>
         </a>
     </div>
@@ -55,7 +56,7 @@
 </nav>
 
 	<div class="conteiner mt-3 d-flex justify-content-center">
-		<div><h1>Student Due Details</h1></div>
+		<div><h1>Student Issued Books</h1></div>
 	</div>
 	
 <div class="container mt-3">
@@ -63,11 +64,9 @@
 	  <thead class="table-dark">
 	    <tr>
 	      <th scope="col"><i class="fas fa-book"></i></th>
-	      <th scope="col">Due Id</th>
+	      <th scope="col">Issue Id</th>
 	      <th scope="col">Book Id</th>
 	      <th scope="col">Issue Date</th>
-	      <th scope="col">Return Date</th>
-	      <th scope="col">Due</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -78,11 +77,9 @@
 	  %>
 	    <tr>
 	      <th scope="row"><i class="fas fa-book"></i></th>
-	      <td><%=table.getInt("due_id")%></td>
-	      <td><%=table.getInt("book")%></td>
-	      <td><%=table.getString("maindate")%></td>
-	      <td><%=table.getString("returndate")%></td>
-	      <td><%=table.getInt("due")%></td>
+	      <td><%=table.getInt("i_id")%></td>
+	      <td><%=table.getInt("b_id")%></td>
+	      <td><%=table.getString("issue_date")%></td>
 	    </tr>
 	  	<% }%>
 		<%if(!isResult){%>
