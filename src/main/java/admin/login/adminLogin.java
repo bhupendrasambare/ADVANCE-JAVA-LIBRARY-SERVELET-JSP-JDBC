@@ -13,12 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import database.admin.adminlogin;
-import database.login.common;
 
 /**
  * Servlet implementation class adminLogin
  */
-@WebServlet("/admin/login")
+@WebServlet({ "/admin/login", "/admin/login/" })
 public class adminLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,7 +34,7 @@ public class adminLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatch = request.getRequestDispatcher("../template/admin/login.jsp");
+		RequestDispatcher  dispatch = request.getRequestDispatcher("../template/admin/login.jsp");
 		dispatch.forward(request, response);
 	}
 
@@ -71,7 +70,5 @@ public class adminLogin extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
-
 
 }

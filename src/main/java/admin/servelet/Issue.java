@@ -1,4 +1,4 @@
-package admin.login;
+package admin.servelet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class adminForgot
+ * Servlet implementation class Issue
  */
-@WebServlet({ "/admin/Forgot", "/admin/Forgot/" })
-public class adminForgot extends HttpServlet {
+@WebServlet({ "/admin/issue", "/admin/issue/" })
+public class Issue extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public adminForgot() {
+    public Issue() {
+        super();
         // TODO Auto-generated constructor stub
     }
 

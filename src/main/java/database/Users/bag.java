@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import database.login.common;
 
 public class bag {
-
 	public static Connection connection = null;
 	public ResultSet getIssueBook(int id) {
 		ResultSet result = null;

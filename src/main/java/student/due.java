@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class due
  */
-@WebServlet("/due")
+@WebServlet({ "/due", "/due/" })
 public class due extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,6 +28,7 @@ public class due extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		Object data = "Some data, can be a String or a Javabean";
 	    request.setAttribute("data", data);
 	    RequestDispatcher dispatch = request.getRequestDispatcher("./template/student/due.jsp");

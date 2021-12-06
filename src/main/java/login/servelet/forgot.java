@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class forgot
  */
-@WebServlet("/forgot")
+@WebServlet({ "/forgot", "/forgot/" })
 public class forgot extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -20,7 +20,8 @@ public class forgot extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public forgot() {
-    	
+        super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**

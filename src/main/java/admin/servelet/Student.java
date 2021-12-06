@@ -1,8 +1,6 @@
-package login.servelet;
+package admin.servelet;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,19 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import database.login.common;
-
 /**
- * Servlet implementation class login
+ * Servlet implementation class Student
  */
-@WebServlet({ "/login", "/login/" })
-public class login extends HttpServlet {
+@WebServlet({ "/admin/student", "/admin/student/" })
+public class Student extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public login() {
+    public Student() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,8 +30,14 @@ public class login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatch = request.getRequestDispatcher("template/login.jsp");
-		dispatch.forward(request, response);
+		HttpSession user = request.getSession();
+		if(user.getAttribute("admin") == null){
+			response.sendRedirect("./admin/login");
+		}
+		else {
+			RequestDispatcher dispatch = request.getRequestDispatcher("./student.jsp");
+			dispatch.forward(request, response);
+		}
 	}
 
 	/**
@@ -43,28 +45,7 @@ public class login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		common logincheck = new common();
-		ResultSet result = logincheck.checkLogin(email, password);
-		try {
-			if(result.next()) {
-				HttpSession user = request.getSession();
-				user.setAttribute("id", result.getInt("s_id"));
-				response.sendRedirect("./");
-				
-			}
-			
-			else {
-				response.sendRedirect("forgot");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		doGet(request, response);
 	}
 
 }

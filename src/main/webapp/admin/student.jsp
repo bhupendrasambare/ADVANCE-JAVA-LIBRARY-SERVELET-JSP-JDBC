@@ -1,20 +1,16 @@
+<%@page import="database.admin.adminStudent"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="database.admin.adminDashboard"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
     if(session.getAttribute("admin") == null){
-		/* response.sendRedirect("../login"); */
+		response.sendRedirect("login");
 	}
     else{
     	int id = (Integer)session.getAttribute("admin");
-    	adminDashboard admin = new adminDashboard();
-    	ResultSet adminDetails = admin.getAdminDetails(id);
-    	if(!adminDetails.next()){
-    		response.sendRedirect("login");
-    	}
-    	int Totaldue = admin.getTotalDue();
-    	int totalIssue = admin.getTotaIssue();
+    	adminStudent student = new adminStudent();
+    	ResultSet details = student.StudentList();
     %>
 <!DOCTYPE html>
 <html>
@@ -56,14 +52,14 @@
       </ul>
       
       <a href="../logout">
-        <button href="../logout" class="btn btn-outline-dark">Logout</button>
+        <button class="btn btn-outline-dark">Logout</button>
         </a>
     </div>
   </div>
 </nav>
 
 	<div class="conteiner d-flex justify-content-center">
-		<div><h1>Librian Details</h1></div>
+		<div><h1>Student Details</h1></div>
 	</div>
 	
 <div class="container mt-3">
@@ -72,36 +68,24 @@
   		<thead class="table-dark">
     		<tr>
 		      <th scope="row"><i class="fas fa-address-card"></i></th>
-		      <th scope="col"></th>
-		      <th scope="col">Details</th>
+		      <th scope="col">Student Id</th>
+		      <th scope="col">Name</th>
+		      <th scope="col">Last</th>
+		      <th scope="col">Email</th>
+		      <th scope="col">Number</th>
 		    </tr>
   		</thead>
   		<tbody>
+  			<%while(details.next()){ %>
   			<tr>
 		      <th scope="row"><i class="far fa-address-card"></i></th>
-		      <td>Full Name</td>
-		      <td class="text-capitalize"><%=adminDetails.getString("name")%></td>
+		      <td><%=details.getInt("s_id")%></td>
+		      <td><%=details.getString("name")%></td>
+		      <td><%=details.getString("last")%></td>
+		      <td><%=details.getString("email")%></td>
+		      <td><%=details.getString("number")%></td>
 		    </tr>
-  			<tr>
-		      <th scope="row"><i class="far fa-address-card"></i></th>
-		      <td>Email</td>
-		      <td class="text-capitalize"><%=adminDetails.getString("email")%></td>
-		    </tr>
-  			<tr>
-		      <th scope="row"><i class="far fa-address-card"></i></th>
-		      <td>Number</td>
-		      <td type="enail"><%=adminDetails.getString("number")%></td>
-		      </tr>
-  			<tr>
-		      <th scope="row"><i class="far fa-address-card"></i></th>
-		      <td>Total Due Collected</td>
-		      <td class="text-capitalize"><%=Totaldue%></td>
-		    </tr>
-  			<tr>
-		      <th scope="row"><i class="far fa-address-card"></i></th>
-		      <td>Number of Books Issued</td>
-		      <td class="text-capitalize"><%=totalIssue%></td>
-		    </tr>
+		    <%} %>
   		</tbody>
 </table>
 	

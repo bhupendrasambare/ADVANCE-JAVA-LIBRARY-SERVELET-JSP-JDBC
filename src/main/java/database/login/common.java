@@ -5,13 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpSession;
-
-import com.mysql.cj.PreparedQuery;
-
 public class common {
-	
 	private static Connection connection=null;
 	public static boolean status=false;
 	
@@ -82,5 +76,4 @@ public class common {
 		
 		return false;
 	}
-	
 }

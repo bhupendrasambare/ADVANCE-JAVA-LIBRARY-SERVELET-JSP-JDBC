@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class logout
  */
-@WebServlet("/logout")
+@WebServlet({ "/logout", "/logout/" })
 public class logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,6 +27,7 @@ public class logout extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		HttpSession user = request.getSession();
 		user.invalidate();
 	    response.sendRedirect("/library");

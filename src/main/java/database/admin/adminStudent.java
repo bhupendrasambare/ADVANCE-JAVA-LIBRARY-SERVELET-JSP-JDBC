@@ -3,31 +3,27 @@ package database.admin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import database.login.common;
 
-public class adminlogin {
+public class adminStudent {
 private static Connection connection = null;
 	
-	public static ResultSet checkLogin(String email, String password) {
-		ResultSet result=null;
+	public ResultSet StudentList() {
+		ResultSet result = null;
 		if(connection == null) {
 			connection = common.getConncection();
 		}
+		PreparedStatement sql;
 		try {
-
-			PreparedStatement sql = connection
-					.prepareStatement("SELECT * FROM librarys where email = ? and password = ? LIMIT 1");
-			
-			sql.setString(1, email);
-			sql.setString(2, password);
-			
+			sql = connection.prepareStatement("SELECT * FROM students");
 			result = sql.executeQuery();
-			
-		} catch (Exception e) {
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return result;
-	
 	}
 }

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class admin
  */
-@WebServlet("/admin")
+@WebServlet({ "/admin", "/admin/" })
 public class admin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,7 +32,7 @@ public class admin extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession user = request.getSession();
 		if(user.getAttribute("admin") == null){
-			response.sendRedirect("admin/login");
+			response.sendRedirect("./admin/login");
 		}
 		else {
 			RequestDispatcher dispatch = request.getRequestDispatcher("./index.jsp");

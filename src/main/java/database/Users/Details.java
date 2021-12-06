@@ -4,13 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.mysql.cj.xdevapi.Result;
-
 import database.login.common;
 
 public class Details {
-	
-	public static Connection connection = common.getConncection();
+public static Connection connection = common.getConncection();
 	
 	public ResultSet getUserDetails(int Id) {
 		ResultSet result = null;
@@ -75,11 +72,4 @@ public class Details {
 		}
 		return result;
 	}
-	
-	
-	
-	
-	
-	
-	
 }
